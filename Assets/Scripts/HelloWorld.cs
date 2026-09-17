@@ -1,25 +1,51 @@
+using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class HelloWorld : MonoBehaviour
 {
+    public static HelloWorld gameManager;
+
+
+    public GameObject currentPlayer;
     public SpriteRenderer playerSprite;
     public float speed;
-    public float health = 5;
+    public float playerHealth = 5;
     public float score = 0;
     public float timer = 0;
     public GameObject coin;
 
+
+    public List<GameObject> allCoins;
+
     public string startText = "Hello World";
     // Start is called once before the first execution of Update after this script gets loaded into your game scene
+    
+
+    void Awake()
+    {
+        gameManager = this;
+    }
+    
+    
     void Start()
     {
-        playerSprite.color = Color.white;
         Debug.Log(startText);
+
+        currentPlayer = GameObject.Find("Player");
+        playerSprite = GameObject.Find("Player").GetComponent<SpriteRenderer>();
+        playerSprite.color = Color.white;
     }
     void Update()
     {
-        if(health <= 0 )
-        { playerSprite.color = Color.red; }
+        if(playerHealth <= 0 )
+        { 
+            playerSprite.color = Color.red;
+            currentPlayer.GetComponent<wasd>().enabled = false;
+        }
+
+
+
         timer += Time.deltaTime;
         if(timer > 3f) //for a repeating timer, just reset timer when it hits the limit
         {
@@ -30,21 +56,10 @@ public class HelloWorld : MonoBehaviour
             timer = 0;
         }
     }
-    //this function runs when the gameObject hits a SOLID collider object
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("hit an object");
-        if (collision.gameObject.tag == "hazard")
-            { health--; }
-    }
 
-    //this runs when the gameObject enters a trigger VOLUME
-    void OnTriggerEnter2D(Collider2D collision)
+
+    public void ChangePlayerHealth(float health)
     {
-        if (collision.gameObject.tag == "collectible")
-        {
-            score++;
-            Destroy(collision.gameObject);
-        }
+        playerHealth = health;
     }
 }

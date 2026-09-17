@@ -1,17 +1,31 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class wasd : MonoBehaviour
 {
+
+    public GameObject gm;
+
+    public float health = 5f;
+    public float score = 0f;
     public float speed = 10f;
     public Vector2 direction;
+
+    public SpriteRenderer mySprite;
+    public Collider2D myCol;
+    public Rigidbody2D myRB;
     //we could declare the keys as variables here but we're using the new input system
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        gm = HelloWorld.gameManager.gameObject; //you can find a static variable without searching for it
+
+        mySprite = GetComponent<SpriteRenderer>();
+        myCol = GetComponent<Collider2D>();
+        myRB = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -61,5 +75,29 @@ public class wasd : MonoBehaviour
         {
             Debug.Log("spacebar was RELEASED this frame: " + Time.frameCount);
         }    
+    }
+
+    //this function runs when the gameObject hits a SOLID collider object
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("hit an object");
+        if (collision.gameObject.tag == "hazard")
+        { 
+            health--;
+            gm.SendMessage("ChangePlayerHealth", health);
+        }
+    }
+
+    //this runs when the gameObject enters a trigger VOLUME
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        collision.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
+        if (collision.gameObject.tag == "collectible")
+        {
+            score++;
+            Destroy(collision.gameObject);
+        }
     }
 }
