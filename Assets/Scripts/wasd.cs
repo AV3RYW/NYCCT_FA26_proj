@@ -21,7 +21,7 @@ public class wasd : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        gm = HelloWorld.gameManager.gameObject; //you can find a static variable without searching for it
+        gm = GameManager.gameManager.gameObject; //you can find a static variable without searching for it
 
         mySprite = GetComponent<SpriteRenderer>();
         myCol = GetComponent<Collider2D>();

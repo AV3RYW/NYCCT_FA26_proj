@@ -2,9 +2,9 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 
-public class HelloWorld : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    public static HelloWorld gameManager;
+    public static GameManager gameManager;
 
 
     public GameObject currentPlayer;
