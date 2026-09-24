@@ -9,7 +9,6 @@ public class GameManager : MonoBehaviour
 
     public GameObject currentPlayer;
     public SpriteRenderer playerSprite;
-    public float speed;
     public float playerHealth = 5;
     public float score = 0;
     public float timer = 0;

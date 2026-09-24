@@ -357,8 +357,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f15f76b297e6aa4088fc13d6ff7744e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::wasd
+  gm: {fileID: 1683246987}
+  health: 5
+  score: 0
   speed: 0.3
   direction: {x: 0, y: 0}
+  mySprite: {fileID: 0}
+  myCol: {fileID: 0}
+  myRB: {fileID: 0}
+--- !u!1 &1683246987
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683246989}
+  - component: {fileID: 1683246988}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1683246988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683246987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2c90d8f6d9b34d43b9477703b18d644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HelloWorld
+  currentPlayer: {fileID: 0}
+  playerSprite: {fileID: 0}
+  playerHealth: 5
+  score: 0
+  timer: 0
+  coin: {fileID: 4433907224820271217, guid: 9fce87fdcdea266458c3ccd23dbbee2b, type: 3}
+  allCoins:
+  - {fileID: 0}
+  - {fileID: 0}
+  startText: Hello World the game is starting
+--- !u!4 &1683246989
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683246987}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.31395, y: -0.96681, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1987163692
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,12 +782,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4127605775090208489, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
       propertyPath: m_Name
-      value: littleRobot_0
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4127605775090208489, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6123767124299279980, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
       propertyPath: coin
       value: 
       objectReference: {fileID: 4433907224820271217, guid: 9fce87fdcdea266458c3ccd23dbbee2b, type: 3}
+    - target: {fileID: 6123767124299279980, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
+      propertyPath: allCoins.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6663560169652555766, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -768,7 +836,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6123767124299279980, guid: 019f3a2c1b173794fafc30f11b378d0f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -786,3 +855,4 @@ SceneRoots:
   - {fileID: 1987163695}
   - {fileID: 2100498639}
   - {fileID: 2770294331900844067}
+  - {fileID: 1683246989}
